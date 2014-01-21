@@ -99,7 +99,7 @@ class UsersController extends \BaseController {
 		$input = Input::all();
 
 		if(isset($input['login']) && isset($input['email']) && isset($input['password'])) {
-			echo $input['email']. " ". $input['password'];
+			$user = findUserby()
 		} else {
 			return View::make('login');
 		}
