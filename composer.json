@@ -6,7 +6,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"frozennode/administrator": "dev-master",
-		"cartalyst/sentry": "2.0.*"
+		"cartalyst/sentry": "2.1.*"
 	},
 	"autoload": {
 		"classmap": [

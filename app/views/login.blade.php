@@ -1,11 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.guest')
 
 @section('content')
 
 <h1>Login</h1>
 
 <div class="form-group">
-    {{ Form::open( array( 'action' => 'UsersController@login' )) }}  
+    {{ Form::open( array( 'action' => 'SessionsController@login' )) }}  
         
         <input type="email" name="email" class="form-control" placeholder="Email"> <br/> 
 

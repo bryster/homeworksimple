@@ -11,15 +11,13 @@
     {{ HTML::script('assets/js/angular.min.js') }}
 </head>
 <body class="scrolled">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-3">
             @section('nav')
                 <nav class="navbar" role="navigation">
                     <a class="navbar-brand" href="#">HWS</a>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="divider"></li>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Tasks</a></li>
-                        <li><a href="logout">Logout</a></li>
                     </ul>
                 </nav>
             @show 

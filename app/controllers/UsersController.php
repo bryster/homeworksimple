@@ -9,7 +9,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('profile');
 	}
 
 	/**
@@ -89,22 +89,4 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
-
-	/**
-	 * Logs a user in
-	*/
-	public function login()
-	{
-
-		$input = Input::all();
-
-		if(isset($input['login']) && isset($input['email']) && isset($input['password'])) {
-			$user = findUserby()
-		} else {
-			return View::make('login');
-		}
-
-		//$user = Sentry::where('email', '=', $input['email'])->firstOrFail();
-	}
-
 }

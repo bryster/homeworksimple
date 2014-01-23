@@ -11,8 +11,23 @@
 |
 */
 
+Route::filter('sentryAuth', function(){
+    //check if logged in or not
+    if( !Sentry::check() ){
+        return Redirect::intended('/login');
+    }
+    else{
+
+    }
+});
 
 Route::any('/register', 'UsersController@create');
-Route::any('/login', 'UsersController@login');
-Route::resource('/users', 'UsersController@store');
+Route::any('/login', 'SessionsController@login');
+Route::get('/logout', 'SessionsController@logout');
+
+Route::group(array('before' => 'sentryAuth'), function()
+{
+    Route::resource('/users', 'UsersController');
+});
+
 
