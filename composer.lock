@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d31ef07c9ff09dc155907210c141c5e8",
+    "hash": "80c6ee99619c38ba650c16e7349f0779",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -238,58 +238,6 @@
             "time": "2013-12-04 14:19:30"
         },
         {
-            "name": "frozennode/administrator",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FrozenNode/Laravel-Administrator.git",
-                "reference": "5d52c213e8f334a26ced65d995fc4851782bb28b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FrozenNode/Laravel-Administrator/zipball/5d52c213e8f334a26ced65d995fc4851782bb28b",
-                "reference": "5d52c213e8f334a26ced65d995fc4851782bb28b",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "4.*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/controllers"
-                ],
-                "psr-0": {
-                    "Frozennode\\Administrator": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Hartigan",
-                    "email": "jan@frozennode.com"
-                }
-            ],
-            "description": "A database interface package for Laravel",
-            "homepage": "http://administrator.frozennode.com",
-            "keywords": [
-                "admin",
-                "administrator",
-                "cms",
-                "database",
-                "laravel",
-                "laravel-administrator"
-            ],
-            "time": "2014-01-04 23:55:34"
-        },
-        {
             "name": "ircmaxell/password-compat",
             "version": "1.0.3",
             "source": {
@@ -378,16 +326,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v4.1.18",
+            "version": "v4.1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ad5a69c4fb949a7c7c4a57a356c6288f4455749f"
+                "reference": "d4b2d82d7ec26d193d179df7b4fc653f37dcae6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ad5a69c4fb949a7c7c4a57a356c6288f4455749f",
-                "reference": "ad5a69c4fb949a7c7c4a57a356c6288f4455749f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d4b2d82d7ec26d193d179df7b4fc653f37dcae6b",
+                "reference": "d4b2d82d7ec26d193d179df7b4fc653f37dcae6b",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +439,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-01-17 20:04:20"
+            "time": "2014-02-04 01:21:04"
         },
         {
             "name": "monolog/monolog",
@@ -652,20 +600,20 @@
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.17",
+            "version": "v1.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "1396fedf134f71d479236fce0833dc4c88079391"
+                "reference": "66a936cc633fe13378c91f81030d5193be968480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/1396fedf134f71d479236fce0833dc4c88079391",
-                "reference": "1396fedf134f71d479236fce0833dc4c88079391",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/66a936cc633fe13378c91f81030d5193be968480",
+                "reference": "66a936cc633fe13378c91f81030d5193be968480",
                 "shasum": ""
             },
             "require": {
-                "lib-pcre": ">=7.9",
+                "lib-pcre": ">=7.3",
                 "php": ">=5.3.0"
             },
             "suggest": {
@@ -699,7 +647,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2014-01-02 10:19:36"
+            "time": "2014-02-02 17:09:49"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -1671,9 +1619,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "frozennode/administrator": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends \BaseController {
+class BidsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,8 +9,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-		return View::make('profile');
+		//
 	}
 
 	/**
@@ -20,7 +19,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-	
+		//
 	}
 
 	/**
@@ -30,22 +29,13 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-
 		$input = Input::all();
-		// TODO: Validate user input
 		
-		// Store in storage
-		if(isset($input['signup'])){
-			$user = Sentry::register(array(
-				'email'=>$input['email'],
-				'username'=>$input['username'],
-				'password'=>$input['password'],
-			));
-
-			dd($user);
-			//$activationCode = $user->getActivationCode();
+		if(isset($input['bid']))
+		{
+			$price = $input['price'];
+			return $price;
 		}
-		echo "?";
 	}
 
 	/**
@@ -56,7 +46,7 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		
 	}
 
 	/**
@@ -92,22 +82,4 @@ class UsersController extends \BaseController {
 		//
 	}
 
-	public function register()
-	{
-		if(isset($_REQUEST['signup'])){
-			$input = Input::all();
-			// TODO: Validate user input
-
-			$user = Sentry::register(array(
-				'email'=>$input['email'],
-				'username'=>$input['username'],
-				'password'=>$input['password'],
-			));
-
-			$activationCode = $user->getActivationCode();
-		} else
-		{
-			return View::make('register');
-		}
-	}
 }

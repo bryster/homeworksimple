@@ -5,7 +5,7 @@
 <h1>Sign Up</h1>
 
 <div class="form-group">
-    {{ Form::open( array( 'route' => 'users.store' )) }}  
+    {{ Form::open( array( 'action' => 'users.register' )) }}  
 
         <input type="text" name="username" placeholder="Username" class="form-control">
          <br/> 

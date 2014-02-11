@@ -5,8 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"frozennode/administrator": "dev-master",
-		"cartalyst/sentry": "2.1.*"
+		"cartalyst/sentry": "2.1.*",
+		"nesbot/Carbon": "*"
 	},
 	"autoload": {
 		"classmap": [

@@ -106,7 +106,6 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Frozennode\Administrator\AdministratorServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 
 	),
@@ -175,6 +174,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Carbon'        => 'Carbon\Carbon',
 
 	),
 

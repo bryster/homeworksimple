@@ -28,7 +28,7 @@ class SessionsController extends \BaseController {
 				return "not check";
 			}
 			else {
-				return Redirect::to('users');
+				return Redirect::to('/'.$user['username']);
 
 			}
 
@@ -41,7 +41,7 @@ class SessionsController extends \BaseController {
 	public function logout(){
 		Session::flush();
 		Sentry::logout();
-		return Redirect::to('login');
+		
 	}
 
 }
