@@ -30,11 +30,19 @@ class BidsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
-		
+
 		if(isset($input['bid']))
 		{
-			$price = $input['price'];
-			return $price;
+			$bid = new Bid;
+			$bid->price = $input['price'];
+			$bid->bidders_id = $input['bidders_id'];
+			$bid->task_id = $input['task_id'];
+			$bid->status = 0;
+
+			$bid->save();
+			$bid_id = $bid->id;
+
+			return Redirect::to('task/'.$bid->task_id.'?bid='.$bid_id);
 		}
 	}
 
@@ -46,7 +54,7 @@ class BidsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		
+		return View::make('bid');	
 	}
 
 	/**

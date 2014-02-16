@@ -14,6 +14,6 @@ class Task extends Eloquent{
 
     public function bid()
     {
-        return $this->hasMany('Bids');
+        return $this->hasMany('Bid');
     }
 }

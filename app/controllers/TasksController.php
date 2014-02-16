@@ -74,10 +74,12 @@ class TasksController extends \BaseController {
 	public function show($id)
 	{
 		// Fetch single task
-		$task = Task::findOrFail($id);
-		$user = User::findOrFail($task['user_id']);
-		
-		return View::make('show_task', compact('task'));
+		$task = Task::with('user')->find($id);
+		$bid = Bid::with('user')->where('task_id', $id)->get();
+
+		return $bid->toJson();
+		//return View::make('show_task', compact('task', 'bid'));
+
 	}
 
 	/**

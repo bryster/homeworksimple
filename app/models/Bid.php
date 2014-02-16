@@ -1,9 +1,9 @@
 <?php 
 
-class Task extends Eloquent{
+class Bid extends Eloquent{
 
     public function user()
-    {
+    {   
         return $this->belongsTo('User', 'bidders_id');
     }
 

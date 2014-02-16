@@ -26,8 +26,7 @@ Route::any('/login', 'SessionsController@login');
 Route::get('/logout', 'SessionsController@logout');
 Route::get('/tasks', 'TasksController@index');
 Route::get('/task/{id}', 'TasksController@show')->where('id', '\d+');
-Route::post('/task/bid', array('as'=>'bids.store', 'uses'=>'BidsController@store'));
-Route::get('/task/{id}/bid/{bid_id}', 'BidsController@show')->where('id', '\d+');
+
 
 
 Route::group(array('before' => 'sentryAuth'), function()
@@ -36,7 +35,8 @@ Route::group(array('before' => 'sentryAuth'), function()
     Route::post('/new_task', array('as'=> 'tasks.store', 'uses'=>'TasksController@store'));  
     Route::resource('/users', 'UsersController');
     Route::get('/task/download/{filename}', 'TasksController@getDownload');
-    
+    Route::get('/task/{id}/bid/{bid_id?}', 'BidsController@show')->where('id', '\d+');
+    Route::post('/task/bid', array('as'=>'bids.store', 'uses'=>'BidsController@store'));
 
     Route::get('{username}', function($username){
 

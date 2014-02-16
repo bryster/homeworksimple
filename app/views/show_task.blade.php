@@ -12,7 +12,6 @@
             <a href="download/{{$task->attachments}}" class="btn btn-large"> Download Files </a>
         @endif
     </p>
-    <p> {{ link_to('/tasks', 'Go back') }}</p>
 
     <article>
         <div class="panel panel-default">
@@ -21,18 +20,21 @@
 
           <!-- List group -->
           <ul class="list-group">
-            <li class="list-group-item">
-            <h2 style="margin-top: 0px;margin-bottom:15px;"><span class="label label-default" style="color:black;">$250</span> <small><button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#userInfo">jbryllec</button></small> 
+
+            
+            @if(count($task->bid)>0)
+                @foreach($bid as $b)
+                <li class="list-group-item">
+            <h2 style="margin-top: 0px;margin-bottom:15px;"><span class="label label-default" style="color:black;">{{ $b->price }}</span> <small><button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#userInfo">{{ $b->user['username'] }}</button></small> 
 
             <span class="pull-right"><button type="button" class="btn btn-link" id="toggle">View Bid</button></span></h2>
             </li>
-
-            <li class="list-group-item">
-            <h2 style="margin-top: 0px;margin-bottom:15px;"><span class="label label-default" style="color:black;">$250</span> <small><button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#userInfo">jbryllec</button></small> 
-
-            <span class="pull-right"><button type="button" class="btn btn-link" id="toggle">View Bid</button></span></h2>
-            <a href="{{$task->id}}/bid/1">View</a>
-            </li>
+                @endforeach
+                
+            @endif
+            @if(count($task->bid)==0)
+                <div class="panel-body">No bids</div>
+            @endif
           </ul>
         </div>
     </article>
@@ -42,14 +44,10 @@
 <!-- Side Bar -->
 <div class="col-md-3">
     <p>
-         @if(Session::get('id')!=$task->user->id)
-    {{ Form::open( array('action' => 'bids.store')) }}
-        <input type="text" placeholder="Place your bid here!" class="form-control input-lg" name="price"><br/>
-        <input type="hidden" name="task_id" value="{{ $task->id }}">
-        <input type="hidden" name="bidders_id" value="{{ Session::get('id') }}">
-        <button type="submit" name="bid" class="btn btn-primary btn-lg btn-block">Bid!</button>
-     {{ Form::close() }}
+    @if(Session::get('id')!=$task->user->id)
+    <a class="btn btn-primary btn-lg btn-block" href="{{ URL::to('/task/'.$task->id.'/bid')}}">Bid</a>
     </p>
+    @endif
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row" style="text-align:center;">
@@ -64,8 +62,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    @endif    
+    </div>    
 </div>
 
 
