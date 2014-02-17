@@ -7,10 +7,28 @@ class TasksController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($id = null)
 	{
-		$tasks = Task::with('user')->paginate(3);
-		return View::make('tasks', compact('tasks'));
+		// $tasks = Task::with('user')->paginate(3);
+		// return View::make('tasks', compact('tasks'));
+
+		if(is_null($id))
+		{
+	        return Task::with('user')->get();    
+	    }
+	    else
+	    {
+	    	$task = Task::with('user')->find($id);
+
+	        if(is_null($task))
+	        {
+	        	return Response::json('Not found', 404);
+	        }
+	        else
+	        {
+	        	return $task;
+	        }
+	    }
 		
 	}
 
@@ -77,7 +95,8 @@ class TasksController extends \BaseController {
 		$task = Task::with('user')->find($id);
 		$bid = Bid::with('user')->where('task_id', $id)->get();
 
-		return $bid->toJson();
+		return $task;
+		//return $bid->toJson();
 		//return View::make('show_task', compact('task', 'bid'));
 
 	}

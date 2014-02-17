@@ -11,6 +11,22 @@
 |
 */
 
+Route::get('/', function(){
+    return View::make('index');
+});
+
+// Route::get('/tasks', function(){
+//     return Task::with('user')->get();
+// });
+
+
+ Route::get('/task/{id?}', 'TasksController@index');
+ Route::post('task/', 'TasksController@store');
+ Route::put('task/{id}', 'TasksController@update');
+ Route::delete('task/{id}', 'TasksController@destroy');
+
+
+
 Route::filter('sentryAuth', function(){
     //check if logged in or not
     if( !Sentry::check() ){
@@ -24,7 +40,7 @@ Route::filter('sentryAuth', function(){
 Route::any('/register', array('as'=>'users.register', 'uses'=>'UsersController@register'));
 Route::any('/login', 'SessionsController@login');
 Route::get('/logout', 'SessionsController@logout');
-Route::get('/tasks', 'TasksController@index');
+// Route::get('/tasks', 'TasksController@index');
 Route::get('/task/{id}', 'TasksController@show')->where('id', '\d+');
 
 

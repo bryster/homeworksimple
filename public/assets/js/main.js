@@ -1,19 +1,11 @@
-var myApp = angular.module('myApp', []);
-myApp.factory('Avengers', function () {
-    var Avengers = {};
-    Avengers.cast = [
-    {
-        name: "Samuel L. Jackson",
-        character: "Nick Fury"
-    },
-    {
-        name: "Rober Downy Jr.",
-        character: "Tony Stark Ironman"
-    }
-    ];
-    return Avengers;
-})
+function TasksController($scope, $http){
 
-function AvengersCtrl($scope, Avengers){
-    $scope.avengers = Avengers;
+    $http.get('/homeworksimple/public/task').success(function(tasks)
+    {
+        $scope.tasks = tasks;
+    });
+}
+
+function BidsController($scope, $http){
+    
 }
