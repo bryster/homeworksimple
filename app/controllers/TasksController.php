@@ -50,36 +50,50 @@ class TasksController extends \BaseController {
 	public function store()
 	{
 		
-		if(Input::has('title', 'content', 'price', 'deadline')){
+		$newTask = Input::all();
+
+		$task = new Task;
+
+		$task->title = $newTask['title'];
+		$task->content = $newTask['content'];
+		$task->price = $newTask['price'];
+		//$task->deadline = $newTask->deadline;
+		$task->user_id = $newTask['user_id'];
+		$task->save();
+
+		return Response::json($task);
+		// **old way of storing data
+
+		//if(Input::has('title', 'content', 'price', 'deadline')){
 			
 
 			// TODO: validation
 
-			$input = Input::all();	
+		// 	$input = Input::all();	
 
-			$task = new Task;
-			$task->title = $input['title'];
-			$task->content = $input['content'];
-			$task->price = $input['price'];
-			//$task->deadline = $input['deadline'];
-			$task->user_id = $input['user_id'];
+		// 	$task = new Task;
+		// 	$task->title = $input['title'];
+		// 	$task->content = $input['content'];
+		// 	$task->price = $input['price'];
+		// 	//$task->deadline = $input['deadline'];
+		// 	$task->user_id = $input['user_id'];
 
-			if(Input::hasFile('attachments'))
-			{
-				$file = Input::file('attachments');
+		// 	if(Input::hasFile('attachments'))
+		// 	{
+		// 		$file = Input::file('attachments');
 				
-				$file->move(public_path(). '/uploads/', time().'-'. $file->getClientOriginalName());
-				$filename = time().'-'. $file->getClientOriginalName();
+		// 		$file->move(public_path(). '/uploads/', time().'-'. $file->getClientOriginalName());
+		// 		$filename = time().'-'. $file->getClientOriginalName();
 
-				$task->attachments = $filename;
-				// TODO: try catch of file upload error
-			}
+		// 		$task->attachments = $filename;
+		// 		// TODO: try catch of file upload error
+		// 	}
 
-			$task->save();
+		// 	$task->save();
 			
-		} else{
-			return "error";
-		}
+		// } else{
+		// 	return "error";
+		// }
 
 	}
 
@@ -121,6 +135,22 @@ class TasksController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$updateTask = Input::all();
+
+		$task = Task::find($updateTask['id']);
+		if(is_null($task)){
+			return Response::json('Task not found', 404);
+		}
+		$task->title = $updateTask['title'];
+		$task->content = $updateTask['content'];
+		$task->price = $updateTask['price'];
+		$task->deadline = $updateTask['deadline'];
+		$task->user_id = $updateTask['user_id'];
+		$task->attachments = $updateTask['attachments'];
+
+		$task->save();
+		return Response::json($task);
+
 	}
 
 	/**

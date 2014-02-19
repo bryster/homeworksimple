@@ -19,9 +19,13 @@ Route::get('/', function(){
 //     return Task::with('user')->get();
 // });
 
+Route::group(array('prefix' => 'service'), function() {
+    Route::resource('authenticate', 'AuthenticateController');
+});
+
 
  Route::get('/task/{id?}', 'TasksController@index');
- Route::post('task/', 'TasksController@store');
+ Route::post('task', 'TasksController@store');
  Route::put('task/{id}', 'TasksController@update');
  Route::delete('task/{id}', 'TasksController@destroy');
 
@@ -48,7 +52,7 @@ Route::get('/task/{id}', 'TasksController@show')->where('id', '\d+');
 Route::group(array('before' => 'sentryAuth'), function()
 {
     Route::get('/new_task', array('as' => 'tasks.create', 'uses'=>'TasksController@create'));  
-    Route::post('/new_task', array('as'=> 'tasks.store', 'uses'=>'TasksController@store'));  
+    //Route::post('/new_task', array('as'=> 'tasks.store', 'uses'=>'TasksController@store'));  
     Route::resource('/users', 'UsersController');
     Route::get('/task/download/{filename}', 'TasksController@getDownload');
     Route::get('/task/{id}/bid/{bid_id?}', 'BidsController@show')->where('id', '\d+');
