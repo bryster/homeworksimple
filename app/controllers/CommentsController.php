@@ -1,6 +1,6 @@
 <?php
 
-class BidsController extends \BaseController {
+class CommentsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -31,19 +31,16 @@ class BidsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if(isset($input['bid']))
-		{
-			$bid = new Bid;
-			$bid->price = $input['price'];
-			$bid->bidders_id = $input['bidders_id'];
-			$bid->task_id = $input['task_id'];
-			$bid->status = 0;
+		$comment = new Comment;
 
-			$bid->save();
-			$bid_id = $bid->id;
+		$comment->bid_id = $input['bid_id'];
+		$comment->user_id = $input['user_id'];
+		$comment->comment = $input['comment'];
 
-			return Redirect::to('task/'.$bid->task_id.'?bid='.$bid_id);
-		}
+		$comment->save();
+
+
+		return Redirect::to('/bid/'.$comment->bid_id);
 	}
 
 	/**
@@ -54,14 +51,7 @@ class BidsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$bid = Bid::find($id);
-		$task = Task::find($bid->task_id);
-		$bidder = User::find($bid->bidders_id);
-		$comments = Comment::with('user')->where('bid_id', $id)->get();
-
-		//dd($comments);
-
-		return View::make('bid', compact('bid', 'task', 'bidder', 'comments'));	
+		//
 	}
 
 	/**

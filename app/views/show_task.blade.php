@@ -27,7 +27,7 @@
                 <li class="list-group-item">
             <h2 style="margin-top: 0px;margin-bottom:15px;"><span class="label label-default" style="color:black;">{{ $b->price }}</span> <small><button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#userInfo">{{ $b->user['username'] }}</button></small> 
 
-            <span class="pull-right"><button type="button" class="btn btn-link" id="toggle">View Bid</button></span></h2>
+            <span class="pull-right"><a type="button" class="btn btn-link" href="../bid/{{ $b->id }}">View Bid</a></span></h2>
             </li>
                 @endforeach
                 
@@ -58,7 +58,7 @@
             <br/>
             <div class="row">
                 <div class="col-md-12">
-                    This will be due on {{ $task->deadline }}
+                    This will be due on {{ $task->fdeadline }}
                 </div>
             </div>
         </div>

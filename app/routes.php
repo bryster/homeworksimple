@@ -37,6 +37,8 @@ Route::group(array('before' => 'sentryAuth'), function()
     Route::get('/task/download/{filename}', 'TasksController@getDownload');
     Route::get('/task/{id}/bid/{bid_id?}', 'BidsController@show')->where('id', '\d+');
     Route::post('/task/bid', array('as'=>'bids.store', 'uses'=>'BidsController@store'));
+    Route::get('/bid/{id}', array('as' => 'bids.show', 'uses'=> 'BidsController@show'));
+    Route::post('/bid/{id}', array('as'=> 'comments.store', 'uses'=> 'CommentsController@store'));
 
     Route::get('{username}', function($username){
 

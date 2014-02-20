@@ -1,5 +1,6 @@
 <?php
 
+
 class TasksController extends \BaseController {
 
 	/**
@@ -77,8 +78,9 @@ class TasksController extends \BaseController {
 		$task = Task::with('user')->find($id);
 		$bid = Bid::with('user')->where('task_id', $id)->get();
 
-		return $bid->toJson();
-		//return View::make('show_task', compact('task', 'bid'));
+		$task->fdeadline = $task->formattedDeadline();
+		//return $task->toJson();
+		return View::make('show_task', compact('task', 'bid'));
 
 	}
 

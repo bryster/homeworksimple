@@ -14,6 +14,6 @@ class Bid extends Eloquent{
 
     public function comment()
     {
-        return $this->hasMany('Comments');
+        return $this->hasMany('Comment', 'bid_id');
     }
 }

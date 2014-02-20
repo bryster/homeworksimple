@@ -1,5 +1,7 @@
 <?php 
 
+use Carbon\Carbon;
+
 class Task extends Eloquent{
 
     public function user()
@@ -15,5 +17,14 @@ class Task extends Eloquent{
     public function bid()
     {
         return $this->hasMany('Bid');
+    }
+
+    public function formattedDeadline(){
+        return $this->deadline->diffForHumans();
+    }
+
+    public function getDates()
+    {
+        return array('deadline');
     }
 }

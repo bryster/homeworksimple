@@ -16,8 +16,7 @@ class CreateBidCommentsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('bid_id');
-			$table->integer('poster_id');
-			$table->integer('bidder_id');
+			$table->integer('user_id');
 			$table->string('comment');
 			$table->timestamps();
 		});
