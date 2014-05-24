@@ -81,9 +81,17 @@ class BidsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+		$input = Input::all();
+
+		 $bid = Bid::find($input['bid_id']);
+
+		 $bid->price = $input['price'];
+
+		 $bid->save();
+
+		 return Redirect::to('bid/'.$input['bid_id']);
 	}
 
 	/**
@@ -95,6 +103,30 @@ class BidsController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function accept()
+	{
+		$input = Input::all();
+
+		$bid = Bid::find($input['bid_id']);
+		$bid->status = 1;
+		$bid->updated_at = NOW();
+
+		$bid->save();
+
+		return Redirect::to('bid/'.$input['bid_id']);
+	}
+
+	public function cancel($id)
+	{
+
+		$bid = Bid::find($id);
+		$bid->status = 0; // 2 = cancel
+
+		$bid->save();
+
+		return Redirect::to('bid/'.$id);
 	}
 
 }

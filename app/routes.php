@@ -39,7 +39,9 @@ Route::group(array('before' => 'sentryAuth'), function()
     Route::post('/task/bid', array('as'=>'bids.store', 'uses'=>'BidsController@store'));
     Route::get('/bid/{id}', array('as' => 'bids.show', 'uses'=> 'BidsController@show'));
     Route::post('/bid/{id}', array('as'=> 'comments.store', 'uses'=> 'CommentsController@store'));
-
+    Route::post('/accept/{id}', array('as'=> 'bids.accept', 'uses'=>'BidsController@accept'));
+    Route::post('/update_bid/{id}', array('as'=> 'bids.update', 'uses'=>'BidsController@update'));
+    Route::get('/cancel/{id}', array('as'=> 'bids.cancel', 'uses'=>'BidsController@cancel'));
     Route::get('{username}', function($username){
 
         $user = User::whereUsername($username)->first();
