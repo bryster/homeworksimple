@@ -4,6 +4,8 @@ use Carbon\Carbon;
 
 class Task extends Eloquent{
 
+    protected $fillable = ['title', 'content'];
+
     public function user()
     {
         return $this->belongsTo('User', 'user_id');

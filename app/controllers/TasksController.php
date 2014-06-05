@@ -1,7 +1,23 @@
 <?php
 
+use Acme\Transformers\TaskTransformer;
 
-class TasksController extends \BaseController {
+class TasksController extends ApiController {
+
+	/**
+	*
+	* @var Acme\Transformers\taskTransformer
+	*
+	*/
+	protected $taskTransformer;
+
+	function __construct(TaskTransformer $taskTransformer)
+	{
+		$this->taskTransformer =  $taskTransformer;
+
+		$this->beforeFilter('auth.basic', ['on' => 'post']);
+	}
+
 
 	/**
 	 * Display a listing of the resource.
@@ -10,8 +26,11 @@ class TasksController extends \BaseController {
 	 */
 	public function index()
 	{
-		$tasks = Task::with('user')->paginate(3);
-		return View::make('tasks', compact('tasks'));
+		$tasks =  Task::all(); 
+
+		return $this->respond([
+				'data' => $this->taskTransformer->transformCollection($tasks->all())
+			]);
 		
 	}
 
@@ -22,7 +41,7 @@ class TasksController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('new_task');
+		
 	}
 
 	/**
@@ -32,38 +51,15 @@ class TasksController extends \BaseController {
 	 */
 	public function store()
 	{
-		
-		if(Input::has('title', 'content', 'price', 'deadline')){
-			
+		if( ! Input::get('title') or ! Input::get('content'))
+		{
 
-			// TODO: validation
-
-			$input = Input::all();	
-
-			$task = new Task;
-			$task->title = $input['title'];
-			$task->content = $input['content'];
-			$task->price = $input['price'];
-			//$task->deadline = $input['deadline'];
-			$task->user_id = $input['user_id'];
-
-			if(Input::hasFile('attachments'))
-			{
-				$file = Input::file('attachments');
-				
-				$file->move(public_path(). '/uploads/', time().'-'. $file->getClientOriginalName());
-				$filename = time().'-'. $file->getClientOriginalName();
-
-				$task->attachments = $filename;
-				// TODO: try catch of file upload error
-			}
-
-			$task->save();
-			
-		} else{
-			return "error";
+			return $this->respondInvalidParameters('Parameters failed validation for a lesson.');
 		}
 
+		Task::create(Input::all());
+
+		return $this->respondCreated('Task successfully created.');
 	}
 
 	/**
@@ -74,13 +70,16 @@ class TasksController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		// Fetch single task
-		$task = Task::with('user')->find($id);
-		$bid = Bid::with('user')->where('task_id', $id)->get();
+		$task = Task::find($id);
 
-		$task->fdeadline = $task->formattedDeadline();
-		//return $task->toJson();
-		return View::make('show_task', compact('task', 'bid'));
+		if(! $task)
+		{
+			return $this->respondNotFound('Task does not exist.');
+		}
+
+		return $this->respond([
+			'data' => $this->taskTransformer->transform($task)
+			]);
 
 	}
 
